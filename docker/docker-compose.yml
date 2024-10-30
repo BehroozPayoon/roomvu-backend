@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: /bin/sh -c "redis-server --requirepass xjWyL83312"
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+
+  api:
+    image: roomvu:latest
+    container_name: roomvu_backend
+    command: "make develop-api"
+    restart: always
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - backend
+    volumes:
+      - ./..:/app
+    ports:
+      - 8010:8080
+
+volumes:
+  redis_data:
+
+networks:
+  backend:
+    external: true
