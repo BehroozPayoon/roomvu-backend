@@ -3,7 +3,7 @@ import os
 from fastapi import APIRouter
 from moviepy.editor import ImageClip, TextClip, CompositeVideoClip
 
-router = APIRouter(prefix="/video")
+router = APIRouter(prefix="/video", tags=["Video"])
 
 
 @router.post("/")
