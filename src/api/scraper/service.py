@@ -48,7 +48,6 @@ class ScraperService:
     async def _load_from_cache(self):
         json_data = await self.redis_session.get("Trending")
         if json_data:
-            print("HERE!!")
             return json.loads(json_data)
         return None
 
